@@ -36,7 +36,7 @@ class Sizes ():
     height_sio2 = 1.0
     width_air = 8.0
     height_air = 1.5
-    cell_size_x = num_blocks*alpha + 4
+    cell_size_x = num_blocks*alpha + 2*pml_size
     cell_size_y = block_y + 2.0
     cell_size_z = 7.0
 
