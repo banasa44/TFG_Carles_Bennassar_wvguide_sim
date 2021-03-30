@@ -22,27 +22,7 @@ class Wave ():
     fcen = (f_max+f_min)/2
 
 #mides dels diferents layers i blocks que es faran servir
-sizes = { 
-    'v1': {
-        'alpha': 1,
-        'num_blocks': 8,
-        'cell_size_x': 12.0,
-        'cell_size_y': 8.0,
-        'cell_size_z': 7.0,
-        'pml_size': 2.0,
-        'width_si': 8.0,
-        'height_si': 0.5,
-        'block_width_si': 0.5,
-        'block_length_si': 6.0,
-        'block_height_si': 0.5,
-        'width_sio2': 8.0,
-        'height_sio2': 1.0,
-        'width_air': 8.0,
-        'height_air': 1.5 
-    },
-    'v2': {None}
-}
-# encara no està implementat (encara estic fent servir el diccionari d'adalt)
+
 class Sizes ():
     alpha = 1.0
     num_blocks = 8.0
@@ -56,7 +36,7 @@ class Sizes ():
     height_sio2 = 1.0
     width_air = 8.0
     height_air = 1.5
-    cell_size_x = num_blocks*alpha
+    cell_size_x = num_blocks*alpha + 4
     cell_size_y = block_y + 2.0
     cell_size_z = 7.0
 
