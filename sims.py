@@ -45,12 +45,6 @@ ez_data, eps_data= simulation(sim_xy, 100, setup.Grid.cell_xy)
 #plt.figure('Ez')
 fig = plt.figure('ez')
 ax = fig.add_subplot(1, 1, 1)
-
-major_ticks = np.arange(0, 350, 20)
-minor_ticks = np.arange(0, 350, 5)
-
-ax.set_xticks(major_ticks)
-ax.set_xticks(minor_ticks, minor=True)
 plt.imshow(ez_data.transpose(), interpolation='spline36', cmap='RdBu', alpha=0.7)
 #plt.axis('off')
 #plt.savefig('Ez_field'+filename+'_xzrrr'+'nm.png')
@@ -60,8 +54,8 @@ plt.show()
 fig = plt.figure('eps')
 ax = fig.add_subplot(1, 1, 1)
 
-major_ticks = np.arange(0, 350, 10)
-minor_ticks = np.arange(0, 350, 2.5)
+major_ticks = np.arange(0, 700, 10)
+minor_ticks = np.arange(0, 700, 2)
 
 ax.set_xticks(major_ticks)
 ax.set_xticks(minor_ticks, minor=True)

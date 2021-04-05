@@ -21,8 +21,9 @@ class Grid ():
     geometry_xy = []
     j = 1 
     for i in np.arange(0, Sizes.num_blocks*Sizes.alpha, Sizes.alpha): #arange (0,4,1) --> i = 0 1 2 3  
+        print (i)
         geometry_xy.append( mp.Block(
-            size= mp.Vector3(Sizes.block_x/(j/4), Sizes.block_y,0),
+            size= mp.Vector3(Sizes.block_x-(0.04*i), Sizes.block_y,0),
             center = mp.Vector3( -pos_ini_x+Sizes.block_x/2+i, 0, 0),           
             material = constants.materials['si']))
         j += 1
