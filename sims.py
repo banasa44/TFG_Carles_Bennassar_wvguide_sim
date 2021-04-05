@@ -40,16 +40,16 @@ def simulation (simulation, until, cell):
     return ez_data, eps_data
 
 #inicialització dels diferents plots (components del camp i estructura)
-ez_data, eps_data= simulation(sim_xz, 100, setup.Grid.cell_xz)
+ez_data, eps_data= simulation(sim_xy, 100, setup.Grid.cell_xy)
 
 plt.figure('Ez')
 plt.imshow(ez_data.transpose(), interpolation='spline36', cmap='RdBu', alpha=0.7)
 #plt.axis('off')
-plt.savefig('Ez_field'+filename+'_xzrrr'+'nm.png')
+#plt.savefig('Ez_field'+filename+'_xzrrr'+'nm.png')
 plt.show()
 
 plt.figure('EPS')
 plt.imshow(eps_data.transpose(), interpolation='spline36', cmap='RdBu')
 #plt.axis('off')
-plt.savefig('Ez_field'+filename+'_xzrrr_0nm.png')
+#plt.savefig('Ez_field'+filename+'_xzrrr_0nm.png')
 plt.show()
