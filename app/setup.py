@@ -19,11 +19,13 @@ class Grid ():
 
 # blocks de silici en el plà XY equiespaiats
     geometry_xy = []
-    for i in np.arange(0, Sizes.num_blocks, Sizes.alpha): #arange (0,4,1) --> i = 0 1 2 3  
+    j = 1 
+    for i in np.arange(0, Sizes.num_blocks*Sizes.alpha, Sizes.alpha): #arange (0,4,1) --> i = 0 1 2 3  
         geometry_xy.append( mp.Block(
-            size= mp.Vector3(Sizes.block_x, Sizes.block_y,0),
+            size= mp.Vector3(Sizes.block_x/(j/4), Sizes.block_y,0),
             center = mp.Vector3( -pos_ini_x+Sizes.block_x/2+i, 0, 0),           
             material = constants.materials['si']))
+        j += 1
 
 #blocks de silici en el plà XZ equiespaiats + block antireflexant de SiO2 + capa d'aire
     geometry_xz = []
@@ -53,7 +55,9 @@ class Source ():
         #mp.GaussianSource(constants.Wave.fcen,fwidth=constants.Wave.df),
         mp.ContinuousSource(frequency= constants.Wave.f_max),
         component=mp.Ez,
-        center= mp.Vector3(-4.5,0,0))]
+        center= Sizes.src_center_xy,
+        size = Sizes.src_size_xy
+        )]
     source_xz = [mp.Source(
         #mp.GaussianSource(constants.Wave.fcen,fwidth=constants.Wave.df),
         mp.ContinuousSource(frequency= constants.Wave.f_max),
