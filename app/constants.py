@@ -40,5 +40,9 @@ class Sizes ():
     cell_size_x = num_blocks*alpha + 2.0*pml_size
     cell_size_y = block_y + 2.0
     cell_size_z = 7.0
+    src_center_xy = mp.Vector3(-4.5,0,0)
+    src_center_xz = mp.Vector3(-1.5,-1,0)
+    src_size_xy = mp.Vector3(0,6,0)
+    src_size_xz = mp.Vector3(6,0,0)
 
 
