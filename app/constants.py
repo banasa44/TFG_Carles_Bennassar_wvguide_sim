@@ -14,18 +14,19 @@ pml_layers = [mp.PML(2.0)]
 
 #paràmetres necessaris per a descriure les ones EM que usaré
 class Wave ():
-    wavelength_max = 1.55
-    f_max = 1/wavelength_max
-    wavelength_min = 1.33
-    f_min = 1/wavelength_min
+    wavelength_max = 1550
+    wavelength_min = 1330
+    f_max = 1000/wavelength_min
+    f_min = 1000/wavelength_max
     df = f_max - f_min
     fcen = (f_max+f_min)/2
+    nfreq = wavelength_max-wavelength_min
+
 
 #mides dels diferents layers i blocks que es faran servir
-
 class Sizes ():
     alpha = 1.0
-    num_blocks = 8.0
+    num_blocks = 8
     pml_size = 2.0
     width_si = 8.0
     height_si = 0.5

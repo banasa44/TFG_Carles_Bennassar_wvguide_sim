@@ -50,17 +50,30 @@ class Grid ():
 
 class Source ():
     source_xy = [mp.Source(
-        mp.ContinuousSource(frequency= constants.Wave.f_max),
+        mp.GaussianSource(constants.Wave.fcen,fwidth=constants.Wave.df),
+        #mp.ContinuousSource(frequency=constants.Wave.f_max),
         component=mp.Ez,
-        center= mp.Vector3(-4.5,0,0))]
+        center= mp.Vector3(-4.5,0,0),
+        size = mp.Vector3(0,Sizes.block_y,0)
+        )]
     source_xz = [mp.Source(
-        mp.ContinuousSource(frequency= constants.Wave.f_max),
+        mp.GaussianSource(constants.Wave.fcen,fwidth=constants.Wave.df),
         component = mp.Ez,
         center = mp.Vector3(-1.5, -1, 0),
-        size = mp.Vector3(6,0,0),
+        size = mp.Vector3(6,0,0)
         )]
     source_rot = [mp.Source(mp.GaussianSource(constants.Wave.fcen,fwidth=constants.Wave.df),
                        component=mp.Ez,
                        center=mp.Vector3(-4.25, -1, 0),
                        size=mp.Vector3(3,0,0),
                        amp_func=cmath.exp(1j*2*math.pi*k.dot(mp.Vector3(-4.25, -1, 0))))]
+'''
+class Detectors ():
+    # direct flux
+    direct_fr = mp.FluxRegion(center=mp.Vector3(-4.25, 0, 0), size=mp.Vector3(Sizes.block_x, Sizes.block_y,0))                            
+    
+    # transmitted flux
+    tran_fr = mp.FluxRegion(center=mp.Vector3(Sizes.num_blocks*Sizes.alpha/2, 0, 0), size=mp.Vector3(Sizes.block_x, Sizes.block_y,0))
+
+
+'''
