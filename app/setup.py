@@ -50,11 +50,13 @@ class Grid ():
 
 class Source ():
     source_xy = [mp.Source(
+        #mp.GaussianSource(constants.Wave.fcen,fwidth=constants.Wave.df),
         mp.ContinuousSource(frequency= constants.Wave.f_max),
         component=mp.Ez,
         center= mp.Vector3(-4.5,0,0))]
     source_xz = [mp.Source(
-        mp.ContinuousSource(frequency= constants.Wave.f_max),
+        mp.GaussianSource(constants.Wave.fcen,fwidth=constants.Wave.df),
+        #mp.ContinuousSource(frequency= constants.Wave.f_max),
         component = mp.Ez,
         center = mp.Vector3(-1.5, -1, 0),
         size = mp.Vector3(6,0,0),
