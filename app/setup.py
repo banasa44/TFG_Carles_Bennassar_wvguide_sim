@@ -62,18 +62,19 @@ class Source ():
         center = Sizes.src_center_xz,
         size =  Sizes.src_size_xz
         )]
-     '''   
+'''   
     source_rot = [mp.Source(mp.GaussianSource(constants.Wave.fcen,fwidth=constants.Wave.df),
                        component=mp.Ez,
                        center=, 0),
                        size=                      amp_func=cmath.exp(1j*2*math.pi*k.dot(, 0))))]
 '''
 
-class Detectors (center_dt, size_dt):
-    # direct flux
-    direct_fr = mp.FluxRegion(center = center_dt, size = size_dt)                            
-    
-    # transmitted flux
-    tran_fr = mp.FluxRegion(center = center_dt, size = size_dt)
+class Detectors (object):
+    def __init__(self,center,size):
+        # direct flux
+        self.direct_fr = mp.FluxRegion(center = center, size = size)                            
+        
+        # transmitted flux
+        self.tran_fr = mp.FluxRegion(center = center, size = size)
 
 

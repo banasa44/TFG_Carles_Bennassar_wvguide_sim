@@ -24,7 +24,7 @@ sim_xz = mp.Simulation(cell_size = Grid.cell_xz,
                     sources= Source.source_xz ,
                     resolution=resolution,
                     default_material=constants.materials['air'] )
-
+'''
 sim_rot = mp.Simulation(cell_size = Grid.cell_xz,
                     boundary_layers = constants.pml_layers ,
                     geometry = Grid.geometry_xz ,
@@ -32,13 +32,14 @@ sim_rot = mp.Simulation(cell_size = Grid.cell_xz,
                     resolution=resolution,
                     k_point=k,
                     default_material=constants.materials['air'] )
-
+'''
 #funció per a fer correr les diferents simulacions
 #paràmetres: (simulació a usar, temps que es vol fer correr la simulació, quina cel·la es farà servir
-def simulation (sim, until, cell, center_dt, size_dt):
-    direct = sim.add_flux(Wave.fcen, Wave.df, Wave.nfreq, Detectors.direct_fr)
-    tran = sim.add_flux(Wave.fcen, Wave.df, Wave.nfreq, Detectors.tran_fr)
-    sim.run(until)
+def simulation (sim, cell, **simrun_args):
+    det = Detectors( center=mp.Vector3(-4.25,0,0),size=mp.Vector3(0,5.0,0))
+    direct = sim.add_flux(Wave.fcen, Wave.df, Wave.nfreq, det.direct_fr)
+    tran = sim.add_flux(Wave.fcen, Wave.df, Wave.nfreq, det.tran_fr)
+    sim.run(**simrun_args)
     eps_data = sim.get_array(center=mp.Vector3(), size=cell, component=mp.Dielectric)
     ez_data = sim.get_array(center=mp.Vector3(), size=cell, component=mp.Ez)
     flux_freqs = mp.get_flux_freqs(direct)
@@ -63,9 +64,8 @@ flux_freqs = mp.get_flux_freqs(direct)
 direct_data = mp.get_fluxes(direct)
 tran_data = mp.get_fluxes(tran)
 '''
-eps_data,ez_data, flux_freqs, direct_data, tran_data = simulation(sim_xy, until=200, Grid.cell_xy, 
-                                                        center_dt=mp.Vector3(-4.25,0,0), 
-                                                        size_dt=mp.Vector3(0,5.0,0))
+eps_data,ez_data, flux_freqs, direct_data, tran_data = simulation(sim_xy, Grid.cell_xy, until=200)
+                                                      
 
 
 plt.figure('Ez')
