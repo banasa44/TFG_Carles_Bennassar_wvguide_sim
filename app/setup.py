@@ -70,11 +70,9 @@ class Source ():
 '''
 
 class Detectors (object):
-    def __init__(self,center,size,center2,size2):
+    def __init__(self,center,size):
         # direct flux
-        self.direct_fr = mp.FluxRegion(center = center, size = size)                            
+        self.detect_fr = mp.FluxRegion(center = center, size = size)                            
         
-        # transmitted flux
-        self.tran_fr = mp.FluxRegion(center = center2, size = size2)
 
 
