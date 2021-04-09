@@ -19,7 +19,7 @@ class Grid ():
 
 # blocks de silici en el plà XY equiespaiats
     geometry_xy = []
-    for i in np.arange(0, Sizes.num_blocks, Sizes.alpha): #arange (0,4,1) --> i = 0 1 2 3  
+    for i in np.arange(0, Sizes.num_blocks*Sizes.alpha, Sizes.alpha): #arange (0,4,1) --> i = 0 1 2 3  
         geometry_xy.append( mp.Block(
             size= mp.Vector3(Sizes.block_x, Sizes.block_y,0),
             center = mp.Vector3( -pos_ini_x+Sizes.block_x/2+i, 0, 0),           
@@ -27,7 +27,7 @@ class Grid ():
 
 #blocks de silici en el plà XZ equiespaiats + block antireflexant de SiO2 + capa d'aire
     geometry_xz = []
-    for i in np.arange(0, Sizes.num_blocks, Sizes.alpha):  
+    for i in np.arange(0, Sizes.num_blocks*Sizes.alpha, Sizes.alpha):  
         geometry_xz.append( mp.Block(
             size= mp.Vector3(Sizes.block_x,  Sizes.block_z, 0),
             center = mp.Vector3( -(pos_ini_x-Sizes.block_x/2)+i,
@@ -70,11 +70,11 @@ class Source ():
 '''
 
 class Detectors (object):
-    def __init__(self,center,size):
+    def __init__(self,center,size,center2,size2):
         # direct flux
         self.direct_fr = mp.FluxRegion(center = center, size = size)                            
         
         # transmitted flux
-        self.tran_fr = mp.FluxRegion(center = center, size = size)
+        self.tran_fr = mp.FluxRegion(center = center2, size = size2)
 
 

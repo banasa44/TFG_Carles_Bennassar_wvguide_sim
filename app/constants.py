@@ -25,24 +25,24 @@ class Wave ():
 
 #mides dels diferents layers i blocks que es faran servir
 class Sizes ():
-    alpha = 1.0
+    l_e= 0.5
     num_blocks = 8
     pml_size = 2.0
     width_si = 8.0
     height_si = 0.5
-    block_x = 0.5
+    block_x = 0.85
     block_y = 6.0
     block_z = 0.5
     width_sio2 = 8.0
     height_sio2 = 1.0
     width_air = 8.0
     height_air = 1.5
+    alpha = l_e+block_x
     cell_size_x = num_blocks*alpha + 2.0*pml_size
     cell_size_y = block_y + 2.0
     cell_size_z = 7.0
-    src_center_xy = mp.Vector3(-4.5,0,0)
+    src_center_xy = mp.Vector3(-(alpha*num_blocks/2),0,0)
     src_center_xz = mp.Vector3(-1.5,-1,0)
     src_size_xy = mp.Vector3(0,6,0)
     src_size_xz = mp.Vector3(6,0,0)
-
 
