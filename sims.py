@@ -17,6 +17,7 @@ def sim_ini (cell, geometry, source, resolution, bckg):
                     geometry = geometry ,
                     sources= source ,
                     resolution=resolution,
+                   # k_point = kpoint,
                     default_material=bckg)
 
 #funció per a fer correr les diferents simulacions
@@ -69,7 +70,7 @@ Ts = []
 #que agafo la tran_xy_data/direct_white_data
 for i in range(Wave.nfreq):
     wl = np.append(wl, 1/flux_white_freqs[i])
-    Ds = np.append(Ds, direct_white_data[i])
+    Ds = np.append(Ds, direct_white_data[i]/direct_white_data[i])
     Ts = np.append(Ts, tran_xy_data[i]/direct_white_data[i])    
 
 
