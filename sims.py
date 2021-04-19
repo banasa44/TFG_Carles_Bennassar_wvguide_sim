@@ -4,9 +4,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import meep as mp
 
-theta_src=20
+
 resolution=20
-k = mp.Vector3(math.cos(theta_src),math.sin(theta_src),0)
+
 filename = "_%d_%d_%03d_%03d"
 #inicialització de les simulacions
 sim_xy = mp.Simulation(cell_size = setup.Grid.cell_xy,
@@ -23,13 +23,13 @@ sim_xz = mp.Simulation(cell_size = setup.Grid.cell_xz,
                     resolution=resolution,
                     default_material=constants.materials['air'] )
 
-sim_rot = mp.Simulation(cell_size = setup.Grid.cell_xz,
+sim_rot = mp.Simulation(cell_size = setup.Grid.cell_xy,
                     boundary_layers = constants.pml_layers ,
-                    geometry = setup.Grid.geometry_xz ,
+                    geometry = setup.Grid.geometry_xy ,
                     sources= setup.Source.source_rot ,
                     resolution=resolution,
-                    k_point=k,
-                    default_material=constants.materials['air'] )
+                    k_point=setup.k,
+                    default_material=constants.materials['water'] )
 
 #funció per a fer correr les diferents simulacions
 #paràmetres: (simulació a usar, temps que es vol fer correr la simulació, quina cel·la es farà servir
@@ -41,27 +41,32 @@ def simulation (simulation, until, cell):
 
 #inicialització dels diferents plots (components del camp i estructura)
 ez_data, eps_data= simulation(sim_xy, 100, setup.Grid.cell_xy)
+#print(ez_data, np.real(ez_data))
+ez_data=np.real(ez_data)
+eps_data=np.real(eps_data)
 
-#plt.figure('Ez')
-fig = plt.figure('ez')
-ax = fig.add_subplot(1, 1, 1)
+ez_data1, eps_data1= simulation(sim_rot, 100, setup.Grid.cell_xy)
+#print(ez_data, np.real(ez_data))
+ez_data1=np.real(ez_data1)
+eps_data1=np.real(eps_data1)
+
+plt.figure('Ez')
+plt.subplot(211)
 plt.imshow(ez_data.transpose(), interpolation='spline36', cmap='RdBu', alpha=0.7)
-#plt.axis('off')
-#plt.savefig('Ez_field'+filename+'_xzrrr'+'nm.png')
+
+
+plt.subplot(212)
+plt.imshow(ez_data1.transpose(), interpolation='spline36', cmap='RdBu', alpha=0.7)
 plt.show()
-
-#plt.figure('EPS')
-fig = plt.figure('eps')
+'''
+fig=plt.figure('EPS')
 ax = fig.add_subplot(1, 1, 1)
-
 major_ticks = np.arange(0, 700, 10)
 minor_ticks = np.arange(0, 700, 2)
-
 ax.set_xticks(major_ticks)
 ax.set_xticks(minor_ticks, minor=True)
 ax.grid(which='minor', alpha=0.2)
 ax.grid(which='major', alpha=0.5)
 plt.imshow(eps_data.transpose(), interpolation='spline36', cmap='RdBu')
-#plt.axis('off')
-#plt.savefig('Ez_field'+filename+'_xzrrr_0nm.png')
 plt.show()
+'''

@@ -10,7 +10,7 @@ materials = {
     'sio2': mp.Medium(index= 1.45)
 }
 #tamany dels PML
-pml_layers = [mp.PML(2.0)]
+pml_layers = [mp.PML(1.0)]
 
 #paràmetres necessaris per a descriure les ones EM que usaré
 class Wave ():
@@ -28,7 +28,7 @@ class Sizes ():
     #alpha = 1.0
     l_e= 0.5
     num_blocks = 13
-    pml_size = 2.0
+    pml_size = 1.0
     width_si = 8.0
     height_si = 0.5
     block_x = 0.85
