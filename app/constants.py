@@ -5,9 +5,9 @@ import meep as mp
 # diccionari amb els índex de refracció dels diferents materials
 materials = {
     "air":mp.Medium(index= 1.0), 
-    'si': mp.Medium(index= 3.45),
+    'si': mp.Medium(index= 3.47),
     'water': mp.Medium(index= 1.33),
-    'sio2': mp.Medium(index= 1.45)
+    'sio2': mp.Medium(index= 1.44)
 }
 #tamany dels PML
 pml_layers = [mp.PML(1.0)]
@@ -27,17 +27,19 @@ class Wave ():
 class Sizes ():
     #alpha = 1.0
     l_e= 0.5
-    num_blocks = 13
+    num_blocks = 18
     pml_size = 1.0
     
-    block_x = 0.85
+    block_x = 0.54
     block_y = 8.0
-    block_z = 0.5
+    block_z = 0.16
 
-    alpha = l_e+block_x
+    alpha = 0.6
+    F_0=0.9
+    R=0.025
     
     width_si = num_blocks*alpha
-    height_si = 0.5
+    height_si = 0.1
     width_sio2 = num_blocks*alpha
     height_sio2 = 1.0
     width_air = num_blocks*alpha
