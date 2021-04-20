@@ -58,7 +58,7 @@ plt.imshow(ez_data.transpose(), interpolation='spline36', cmap='RdBu', alpha=0.7
 plt.subplot(212)
 plt.imshow(ez_data1.transpose(), interpolation='spline36', cmap='RdBu', alpha=0.7)
 plt.show()
-
+'''
 fig=plt.figure('EPS')
 ax = fig.add_subplot(1, 1, 1)
 major_ticks = np.arange(0, 700, 10)
@@ -69,3 +69,4 @@ ax.grid(which='minor', alpha=0.2)
 ax.grid(which='major', alpha=0.5)
 plt.imshow(eps_data1.transpose(), interpolation='spline36', cmap='RdBu')
 plt.show()
+'''

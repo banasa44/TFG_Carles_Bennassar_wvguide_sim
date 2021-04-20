@@ -41,14 +41,15 @@ class Grid ():
         material = constants.materials['sio2']))
     geometry_xz.append( mp.Block(
         size= mp.Vector3(Sizes.width_si, Sizes.height_si*2+4, 0),
-        center = mp.Vector3( 0, Sizes.height_si*2+Sizes.height_sio2+2, 0), 
-        material = constants.materials['si']))
-    geometry_xz.append( mp.Block(
-        size= mp.Vector3(Sizes.width_si, Sizes.height_si*2+4, 0),
         center = mp.Vector3( 0, -(Sizes.height_si*2+Sizes.height_sio2+1), 0), 
         material = constants.materials['air']))
+    geometry_xz.append( mp.Block(
+        size= mp.Vector3(Sizes.width_si, Sizes.height_si*4, 0),
+        center = mp.Vector3( 0, Sizes.height_si*4+Sizes.height_sio2/2.05, 0), 
+        material = constants.materials['si']))
 
-theta_src = 0
+
+theta_src = 240
 theta_r = math.radians(theta_src)
 # pw-amp is a function that returns the amplitude exp(ik(x+x0)) at a
 # given point x.  (We need the x0 because current amplitude functions
