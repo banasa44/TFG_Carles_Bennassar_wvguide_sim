@@ -23,12 +23,12 @@ sim_xz = mp.Simulation(cell_size = setup.Grid.cell_xz,
                     resolution=resolution,
                     default_material=constants.materials['air'] )
 
-sim_rot = mp.Simulation(cell_size = setup.Grid.cell_xy,
+sim_rot = mp.Simulation(cell_size = setup.Grid.cell_xz,
                     boundary_layers = constants.pml_layers ,
-                    geometry = setup.Grid.geometry_xy ,
+                    geometry = setup.Grid.geometry_xz ,
                     sources= setup.Source.source_rot ,
                     resolution=resolution,                    
-                    default_material=constants.materials['water'],
+                    default_material=constants.materials['air'],
                     k_point=setup.k)
 
 #funció per a fer correr les diferents simulacions
@@ -40,12 +40,12 @@ def simulation (simulation, until, cell):
     return ez_data, eps_data
 
 #inicialització dels diferents plots (components del camp i estructura)
-ez_data, eps_data= simulation(sim_xy, 100, setup.Grid.cell_xy)
+ez_data, eps_data= simulation(sim_xz, 100, setup.Grid.cell_xz)
 #print(ez_data, np.real(ez_data))
 ez_data=np.real(ez_data)
 eps_data=np.real(eps_data)
 
-ez_data1, eps_data1= simulation(sim_rot, 100, setup.Grid.cell_xy)
+ez_data1, eps_data1= simulation(sim_rot, 100, setup.Grid.cell_xz)
 #print(ez_data, np.real(ez_data))
 ez_data1=np.real(ez_data1)
 eps_data1=np.real(eps_data1)

@@ -52,7 +52,7 @@ class Grid ():
         material = constants.materials['air']))
 '''
 
-theta_src = 8
+theta_src = 11
 theta_r = math.radians(theta_src)
 # pw-amp is a function that returns the amplitude exp(ik(x+x0)) at a
 # given point x.  (We need the x0 because current amplitude functions
@@ -74,20 +74,20 @@ class Source ():
         #mp.ContinuousSource(frequency= constants.Wave.f_max),
         component=mp.Ez,
         center = constants.Sizes.src_center_xy,
-        size = mp.Vector3(0,8,0),
+        size = constants.Sizes.src_size_xy,
         )]
     source_xz = [mp.Source(
-        mp.GaussianSource(constants.Wave.fcen,fwidth=constants.Wave.df),
-        #mp.ContinuousSource(frequency= constants.Wave.f_max),
+        #mp.GaussianSource(constants.Wave.fcen,fwidth=constants.Wave.df),
+        mp.ContinuousSource(frequency= constants.Wave.f_max),
         component = mp.Ez,
         center = constants.Sizes.src_center_xz,
-        size = mp.Vector3(6,0,0),
+        size = constants.Sizes.src_size_xz,
         )]
     source_rot = [mp.Source(
         mp.GaussianSource(constants.Wave.fcen,fwidth=constants.Wave.df),
         #mp.ContinuousSource(frequency= constants.Wave.f_max),
         component=mp.Ez,
-        center = constants.Sizes.src_center_xy,
-        size = mp.Vector3(0,8,0),
-        amp_func=pw_amp(k,constants.Sizes.src_center_xy)#(k, mp.Vector3(-Sizes.num_blocks*Sizes.alpha/2, 0, 0))
+        center = constants.Sizes.src_center_xz,
+        size = constants.Sizes.src_size_xz,
+        amp_func=pw_amp(k,constants.Sizes.src_center_xz)#(k, mp.Vector3(-Sizes.num_blocks*Sizes.alpha/2, 0, 0))
     )]
