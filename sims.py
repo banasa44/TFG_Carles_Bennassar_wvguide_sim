@@ -41,10 +41,10 @@ def simulation (sim, cell,det_dir,det_tran, **simrun_args):
 
 #inicialitzo els detectors que vulgui posar
 det_dir = Detectors(
-        center=constants.Sizes.src_center_xy,
+        center=mp.Vector3(-(constants.Sizes.alpha*constants.Sizes.num_blocks/2)+0.5,0,0),
         size=mp.Vector3(0,5.0,0))
 det_tran = Detectors(
-        center=mp.Vector3((constants.Sizes.alpha*constants.Sizes.num_blocks/2)-0.31),
+        center=mp.Vector3((constants.Sizes.alpha*constants.Sizes.num_blocks/2)-0.15,0,0),
         size=mp.Vector3(0,5.0,0))
 
 # aquí faig la simulació en blanc, i guardo les dades "blanques"
@@ -113,6 +113,7 @@ plt.plot(wl,Ts,'ro-',label='transmitance')
 plt.xlabel("wavelength (μm)")
 plt.legend(loc="upper right")
 plt.show()
+plt.savefig('simple_grid_w_'+str(constants.Sizes.block_x)+'_nm.png')
 
 '''
 fig=plt.figure('EPS')
