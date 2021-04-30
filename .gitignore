@@ -1,3 +1,5 @@
 *.png
 
 constants.py
+
+*.csv
