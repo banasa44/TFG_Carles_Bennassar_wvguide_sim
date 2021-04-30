@@ -9,7 +9,6 @@ import meep as mp
 
 resolution=20
 
-filename = "_%d_%d_%03d_%03d"
 #inicialització de les simulacions
 def sim_ini (cell, geometry, source, resolution, kpoint, bckg):
     return mp.Simulation(cell_size = cell,
@@ -37,7 +36,8 @@ def simulation (sim, cell,det_dir,det_tran, **simrun_args):
     flux_freqs = mp.get_flux_freqs(direct)
     direct_data = mp.get_fluxes(direct)
     tran_data = mp.get_fluxes(tran)
-    return eps_data, ez_data, flux_freqs, direct_data, tran_data
+    reset=sim.reset_meep()
+    return eps_data, ez_data, flux_freqs, direct_data, tran_data,reset
 
 #inicialitzo els detectors que vulgui posar
 det_dir = Detectors(
@@ -55,30 +55,32 @@ sim_white = sim_ini(
                 resolution=20,
                 kpoint=None,
                 bckg=constants.materials['water'])
-eps_white_data, ez_white_data, flux_white_freqs, direct_white_data, tran_white_data = simulation(
+eps_white_data, ez_white_data, flux_white_freqs, direct_white_data, tran_white_data, reset = simulation(
                                                                                             sim=sim_white, 
                                                                                             cell=Grid.cell_xy,
                                                                                             det_dir=det_dir,
                                                                                             det_tran=det_tran,
                                                                                             until=200)
-
+reset
 # aquí faig la simulació amb tots els blocs, i guardo les dades de la graella
 sim = sim_ini(
             cell=Grid.cell_xy,
             geometry=Grid.geometry_xy,
-            source=Source.source_rot,
+            source=Source.source_xy,
             resolution=20,
             kpoint=k,
             bckg=constants.materials['water'])
-eps_data, ez_data, flux_freqs, direct_data, tran_data = simulation(
+eps_data, ez_data, flux_freqs, direct_data, tran_data ,reset= simulation(
                                                         sim=sim, 
                                                         cell=Grid.cell_xy,
                                                         det_dir=det_dir,
                                                         det_tran=det_tran,
                                                         until=200)
 #converteixo les dades del camp en valors reals per a poder-los plotejar                                                      
+'''
 ez_data=np.real(ez_data)
 eps_data=np.real(eps_data)
+'''
 
 #PLOTS
 plt.figure('Ez')
@@ -112,8 +114,9 @@ plt.plot(wl,Ts,'ro-',label='transmitance')
 #plt.axis([5.0, 10.0, 0, 1])
 plt.xlabel("wavelength (μm)")
 plt.legend(loc="upper right")
+plt.savefig('simple_grid_w_'+str(constants.Sizes.block_x)+'_rnm.png')
 plt.show()
-plt.savefig('simple_grid_w_'+str(constants.Sizes.block_x)+'_nm.png')
+
 
 '''
 fig=plt.figure('EPS')
