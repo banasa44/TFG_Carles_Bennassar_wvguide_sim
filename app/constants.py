@@ -27,11 +27,12 @@ class Wave ():
 #mides dels diferents layers i blocks que es faran servir
 class Sizes ():
  #versió espaiat constant
+    version = 'continous alpha and l_o and l_e'
     l_e= 0.5
     num_blocks = 24
     pml_size = 1.0
     #0.43 --- 0.46   0.47 no
-    block_x = 0.485
+    block_x = 0.3
     block_y = 8.0
     block_z = 0.16
     block_x_min = 0.3

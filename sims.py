@@ -102,9 +102,9 @@ wl = []
 Ds = []
 Ts = []
 for i in range(Wave.nfreq):
-    wl = np.append(wl, 1/flux_white_freqs[i])
-    Ds = np.append(Ds, direct_white_data[i]/direct_white_data[i])
-    Ts = np.append(Ts, tran_data[i]/direct_white_data[i])    
+    wl.append(1/flux_white_freqs[i])
+    Ds.append(direct_white_data[i]/direct_white_data[i])
+    Ts.append(tran_data[i]/direct_white_data[i])    
 
 
 plt.subplot(313)
