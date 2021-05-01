@@ -32,13 +32,15 @@ class Sizes ():
     num_blocks = 24
     pml_size = 1.0
     #0.43 --- 0.46   0.47 no
-    block_x = 0.3
+    #TODO
+    block_x = 0.6
+    #TODO
     block_y = 8.0
     block_z = 0.16
     block_x_min = 0.3
     block_x_max = 0.6
 
-    alpha = 0.9
+    alpha = 1.1
     F_0=0.9
     R=0.025
     
