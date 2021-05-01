@@ -84,14 +84,14 @@ eps_data=np.real(eps_data)
 
 #PLOTS
 plt.figure('Ez')
-plt.subplot(311)
+plt.title('Simulation rays for w='+str(constants.Sizes.block_x)+', alpha='+str(Sizes.alpha)+'μm')
 plt.imshow(ez_data.transpose(), interpolation='spline36', cmap='RdBu', alpha=0.7)
-#plt.axis('off')
-#plt.savefig('Ez_field'+filename+'_xzrrr'+'nm.png')
+plt.axis('off')
+plt.savefig('app/static/images/sim/simple_grid_sim_w_'+str(constants.Sizes.block_x)+'alph_'+str(Sizes.alpha)+'μm.png')
 #plt.show()
 
-plt.subplot(312)
-plt.imshow(eps_data.transpose(), interpolation='spline36', cmap='RdBu')
+
+#plt.imshow(eps_data.transpose(), interpolation='spline36', cmap='RdBu')
 #plt.axis('off')
 #plt.savefig('Ez_field'+filename+'_xzrrr_0nm.png')
 #plt.show()
@@ -107,15 +107,17 @@ for i in range(Wave.nfreq):
     Ts.append(tran_data[i]/direct_white_data[i])    
 
 
-plt.subplot(313)
+plt.figure('Graph')
+plt.title('Transmitance normalized to gaussian source: w='+str(constants.Sizes.block_x)+', alpha='+str(Sizes.alpha)+'μm')
 plt.plot(wl,Ds,'bo-',label='direct beam')
 plt.plot(wl,Ts,'ro-',label='transmitance')
 #plt.plot(wl,1-Ds-Ts,'go-',label='loss')
 #plt.axis([5.0, 10.0, 0, 1])
 plt.xlabel("wavelength (μm)")
-plt.legend(loc="upper right")
-plt.savefig('simple_grid_w_'+str(constants.Sizes.block_x)+'_rnm.png')
-plt.show()
+plt.ylabel("transmitance")
+plt.legend(loc="best")
+plt.savefig('app/static/images/graph/simple_grid_w_'+str(constants.Sizes.block_x)+'alph_'+str(Sizes.alpha)+'_nm.png')
+#plt.show()
 
 
 '''

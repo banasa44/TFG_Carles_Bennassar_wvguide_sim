@@ -38,7 +38,7 @@ class Sizes ():
     block_x_min = 0.3
     block_x_max = 0.6
 
-    alpha = 1.0
+    alpha = 0.9
     F_0=0.9
     R=0.025
     
