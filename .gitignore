@@ -4,3 +4,21 @@ constants.py
 
 *.csv
 static
+
+*.tex
+
+.latexmkrc
+*.aux
+*.fdb_latexmk
+*.fls
+*.gz
+*.idx
+*.ilg
+*.ind
+*.log
+*.out
+*.pdf
+*.synctex.gz
+*.synctex(busy)
+*.toc
+*.xdv
